@@ -3,7 +3,6 @@
 // library imports
 const http = require('http');
 const express = require('express');
-const cors = require('cors');
 
 // custom imports
 const photosRouter = require('./src/routes/index.js');
@@ -11,8 +10,7 @@ const photosRouter = require('./src/routes/index.js');
 
 const app = express();
 app.use(express.json());
-
-app.use(cors({ origin: 'http://localhost:8100' }));
+const PORT = process.env.PORT || 8080;
 
 app.use('/photos', photosRouter);
 
@@ -22,7 +20,6 @@ app.use('/', (req, res) => {
 });
 
 const server = http.createServer(app);
-const port = 8100;
-server.listen(port);
+server.listen(PORT);
 
-console.debug(`Server listening on port http://localhost:${port}`);
+console.debug(`Server listening on port http://localhost:${PORT}`);

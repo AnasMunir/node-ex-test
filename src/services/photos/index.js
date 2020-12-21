@@ -14,7 +14,6 @@ const crap = (req, res) => {
 	res.status(200).json('inside photos');
 }
 async function getPhoto(req, res) {
-	console.log('shit load of crap');
 	try {
 		const { id } = req.params;
 		const paramHaveSpecialCharacters = validateInput(id);
@@ -27,7 +26,6 @@ async function getPhoto(req, res) {
 		}
 		const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${id}`);
 		const result = await response.json();
-		console.log('response --', result);
 		if (Object.entries(result).length === 0) {
 			return res.status(404).json(
 				{
@@ -47,7 +45,6 @@ async function getPhoto(req, res) {
 }
 
 async function searchPhotos(req, res) {
-	console.log("I'm here");
 	const { title } = req.query;
 
 	if (title) {
@@ -59,7 +56,6 @@ async function searchPhotos(req, res) {
 			}
 			return res.status(400).json(errorResp);
 		}
-		console.log('should not execute if 400');
 		const regex = new RegExp(`${title}`);
 		const response = await fetch('https://jsonplaceholder.typicode.com/photos');
 		const json = await response.json();
@@ -67,7 +63,6 @@ async function searchPhotos(req, res) {
 		const resp = {
 			results: results
 		};
-		// console.log('results', results);
 		res.status(200).json(resp);
 	} else {
 		const resp = {

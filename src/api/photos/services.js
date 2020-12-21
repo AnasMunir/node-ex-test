@@ -25,7 +25,6 @@ const getPhoto = async (req, res) => {
 		}
 		const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${id}`);
 		const result = await response.json();
-		console.log('response --', result);
 		if (Object.entries(result).length === 0) {
 			return res.status(404).json(
 				{
@@ -47,7 +46,6 @@ const getPhoto = async (req, res) => {
 
 const searchPhotos = async (req, res) => {
 	try {
-		console.log("I'm here");
 		const { title } = req.query;
 
 		if (title) {
@@ -59,7 +57,6 @@ const searchPhotos = async (req, res) => {
 				}
 				return res.status(400).json(errorResp);
 			}
-			console.log('should not execute if 400');
 			const regex = new RegExp(`${title}`);
 			const response = await fetch('https://jsonplaceholder.typicode.com/photos');
 			const json = await response.json();
@@ -67,7 +64,6 @@ const searchPhotos = async (req, res) => {
 			const resp = {
 				results: results
 			};
-			// console.log('results', results);
 			res.status(200).json(resp);
 		} else {
 			const resp = {
