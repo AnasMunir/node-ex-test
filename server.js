@@ -16,7 +16,11 @@ app.use('/photos', photosRouter);
 
 
 app.use('/', (req, res) => {
-	res.send('home');
+	const instructions = {
+		"Details route": "/photos/{id}",
+		"Search route": "/photos/search?title={search-term}"
+	}
+	res.json(instructions);
 });
 
 const server = http.createServer(app);
