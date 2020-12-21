@@ -6,11 +6,11 @@ const express = require('express');
 
 // custom imports
 const photosRouter = require('./src/routes/index.js');
+const { PORT } = require('./src/config.js');
 
 
 const app = express();
 app.use(express.json());
-const PORT = process.env.PORT || 8080;
 
 app.use('/photos', photosRouter);
 
